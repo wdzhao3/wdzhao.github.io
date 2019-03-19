@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Scrapy框架 | 飙车的蜗牛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是一个比较成熟的python爬虫框架。基于scrapy1.5的版本。 首先创建第一个scrapy项目，命令行：">
+<meta name="keywords" content="前端工程师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy框架">
+<meta property="og:url" content="http://yoursite.com/2018/11/21/Scrapy框架/index.html">
+<meta property="og:site_name" content="飙车的蜗牛">
+<meta property="og:description" content="这是一个比较成熟的python爬虫框架。基于scrapy1.5的版本。 首先创建第一个scrapy项目，命令行：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2018/11/21/Scrapy框架/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/Scrapy框架/scrapy-1.png">
+<meta property="og:updated_time" content="2019-03-19T08:00:17.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy框架">
+<meta name="twitter:description" content="这是一个比较成熟的python爬虫框架。基于scrapy1.5的版本。 首先创建第一个scrapy项目，命令行：">
+<meta name="twitter:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2018/11/21/Scrapy框架/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/Scrapy框架/scrapy-1.png">
+  
+    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="飙车的蜗牛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/wdzhao.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/wdzhao.github.io/" id="logo">飙车的蜗牛</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/wdzhao.github.io/" id="subtitle">这是一个没有人气的网站！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/wdzhao.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Scrapy框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/" class="article-date">
+  <time datetime="2018-11-21T06:08:19.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Scrapy框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一个比较成熟的python爬虫框架。基于scrapy1.5的版本。</p>
+<p>首先创建第一个scrapy项目，命令行：</p>
+<a id="more"></a>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject <span class="tag">&lt;<span class="name">demo</span>&gt;</span> // <span class="tag">&lt;&gt;</span>为项目名称</span><br></pre></td></tr></table></figure>
+<p>创建成功后的目录结构</p>
+<p><img src="/wdzhao.github.io//yoursite.com/2018/11/21/Scrapy框架/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\Scrapy框架\scrapy-1.png" alt="scrapy-1"></p>
+<p>创建蜘蛛</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">scrapy </span>genspider 文件名 爬虫基础域名</span><br></pre></td></tr></table></figure>
+<p>基础设置、url异常、模拟浏览器请求、代理IP后面讲</p>
+<p>先来尝试一下我们的蜘蛛</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">itemSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line"> </span><br><span class="line">    name = <span class="string">'&lt;a href="http://www.scrapyd.cn/doc/149.html" target="_blank"&gt;&lt;u&gt;listSpider&lt;/u&gt;&lt;/a&gt;'</span></span><br><span class="line"> </span><br><span class="line">    start_urls = [<span class="string">'http://lab.scrapyd.cn'</span>]</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        mingyan = response.css(<span class="string">'div.quote'</span>)  <span class="comment"># 提取首页所有名言，保存至变量mingyan</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> mingyan:  <span class="comment"># 循环获取每一条名言里面的：名言内容、作者、标签</span></span><br><span class="line"> </span><br><span class="line">            text = v.css(<span class="string">'.text::text'</span>).extract_first()  <span class="comment"># 提取名言</span></span><br><span class="line">            autor = v.css(<span class="string">'.author::text'</span>).extract_first()  <span class="comment"># 提取作者</span></span><br><span class="line">            tags = v.css(<span class="string">'.tags .tag::text'</span>).extract()  <span class="comment"># 提取标签</span></span><br><span class="line">            tags = <span class="string">','</span>.join(tags)  <span class="comment"># 数组转换为字符串</span></span><br><span class="line"> </span><br><span class="line">            <span class="string">"""</span></span><br><span class="line"><span class="string">            接下来进行写文件操作，每个名人的名言储存在一个txt文档里面</span></span><br><span class="line"><span class="string">            """</span></span><br><span class="line">            fileName = <span class="string">'%s-语录.txt'</span> % autor  <span class="comment"># 定义文件名,如：木心-语录.txt</span></span><br><span class="line"> </span><br><span class="line">            <span class="keyword">with</span> open(fileName, <span class="string">"a+"</span>) <span class="keyword">as</span> f:  <span class="comment"># 不同人的名言保存在不同的txt文档，“a+”以追加的形式</span></span><br><span class="line">                f.write(text)</span><br><span class="line">                f.write(<span class="string">'\n'</span>)  <span class="comment"># ‘\n’ 表示换行</span></span><br><span class="line">                f.write(<span class="string">'标签：'</span> + tags)</span><br><span class="line">                f.write(<span class="string">'\n-------\n'</span>)</span><br><span class="line">                f.close()</span><br></pre></td></tr></table></figure>
+<p>进入项目目录运行我们的蜘蛛：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl <span class="built_in">name</span></span><br></pre></td></tr></table></figure>
+<h3 id="scrapy详解-获取页面的过程"><a href="#scrapy详解-获取页面的过程" class="headerlink" title="scrapy详解-获取页面的过程"></a>scrapy详解-获取页面的过程</h3><p>我们浏览页面都是一个：发送请求、返回请求的过程，我们的蜘蛛要发送请求，首先需要一个请求链接，因此，scrapy spiders的第一个必须的常量：start_urls</p>
+<p>URL有两种写法，大多数我们都采用把URL作为类的常量，然后加上另一个方法：parse(response)</p>
+<p>request(请求页面)-response(返回页面)的过程就自动完成了，我们就不必再写函数接受返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">simpleUrl</span><span class="params">(scrapy,Spider)</span>:</span></span><br><span class="line">    name=<span class="string">"simpleUrl"</span></span><br><span class="line">    start_urls=[</span><br><span class="line">        <span class="string">'http://lab.scrapyd.cn/page/1/'</span>,</span><br><span class="line">        <span class="string">'http://lab.scrapyd.cn/page/2/'</span>,</span><br><span class="line">        ]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        page = response.url.split(<span class="string">"/"</span>)[<span class="number">-2</span>]</span><br><span class="line">        filename=<span class="string">'mingyan-%s.html'</span> % page</span><br><span class="line">        <span class="keyword">with</span> open(filename,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(<span class="string">'保存文件：%s'</span> % filename)</span><br></pre></td></tr></table></figure>
+<h3 id="scrapy详解-CSS、Xpath提取器"><a href="#scrapy详解-CSS、Xpath提取器" class="headerlink" title="scrapy详解-CSS、Xpath提取器"></a>scrapy详解-CSS、Xpath提取器</h3><p>css选择提取数据，按照HTML的标签结构可以分为：标签属性值提取、标签内容提取，scrapy相关函数有：response.css(‘css表达式’)、extract()、extract_frist()。</p>
+<h4 id="标签属性值提取："><a href="#标签属性值提取：" class="headerlink" title="标签属性值提取："></a>标签属性值提取：</h4><p>后续解释，直接上例子。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.css</span>("<span class="selector-class">.post-content</span> <span class="selector-tag">img</span><span class="selector-pseudo">::attr(src)").extract()</span></span><br></pre></td></tr></table></figure>
+<h4 id="标签内容提取"><a href="#标签内容提取" class="headerlink" title="标签内容提取"></a>标签内容提取</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">response</span><span class="selector-class">.css</span>("<span class="selector-class">.post-content</span> *<span class="selector-pseudo">::text").extract()</span></span><br></pre></td></tr></table></figure>
+<h4 id="CSS高级用法"><a href="#CSS高级用法" class="headerlink" title="CSS高级用法"></a>CSS高级用法</h4><p>待。。。</p>
+<h2 id="scrapy中间件的配置及编写中间件"><a href="#scrapy中间件的配置及编写中间件" class="headerlink" title="scrapy中间件的配置及编写中间件"></a>scrapy中间件的配置及编写中间件</h2><p>。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/21/Scrapy框架/" data-id="cjtfuzq6800010wuy5agviyhg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          十大经典算法-优化篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/wdzhao.github.io/2018/11/19/python基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/">十大经典算法-优化篇</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/">Scrapy框架</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/19/python基础/">python基础</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/10/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵卫东<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/wdzhao.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/wdzhao.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/wdzhao.github.io/fancybox/jquery.fancybox.css">
+  <script src="/wdzhao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/wdzhao.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

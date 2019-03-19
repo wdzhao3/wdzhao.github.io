@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>十大经典算法-优化篇 | 飙车的蜗牛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。">
+<meta name="keywords" content="前端工程师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十大经典算法-优化篇">
+<meta property="og:url" content="http://yoursite.com/2019/01/01/十大经典算法-优化篇/index.html">
+<meta property="og:site_name" content="飙车的蜗牛">
+<meta property="og:description" content="算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/01/01/十大经典算法-优化篇/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/十大经典算法-优化篇/place.png">
+<meta property="og:updated_time" content="2019-03-19T14:12:29.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="十大经典算法-优化篇">
+<meta name="twitter:description" content="算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。">
+<meta name="twitter:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/01/01/十大经典算法-优化篇/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/十大经典算法-优化篇/place.png">
+  
+    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="飙车的蜗牛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/wdzhao.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/wdzhao.github.io/" id="logo">飙车的蜗牛</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/wdzhao.github.io/" id="subtitle">这是一个没有人气的网站！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/wdzhao.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-十大经典算法-优化篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/" class="article-date">
+  <time datetime="2019-01-01T07:06:09.000Z" itemprop="datePublished">2019-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      十大经典算法-优化篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。</p>
+<a id="more"></a>
+<p>来看已经总结的算法：</p>
+<p><img src="/wdzhao.github.io//yoursite.com/2019/01/01/十大经典算法-优化篇/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\十大经典算法-优化篇\place.png" alt="place"></p>
+<p>(n：数据规模 k：“桶”的个数 In-place：占用常熟内存 Out-place：占用额外内存)</p>
+<h1 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h1><p>可能网上大部分是C语言来实现的，我们这里用JavaScript写，并且加上执行时间来看看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序</span></span><br><span class="line"><span class="comment">// v1</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'冒泡v1耗时：'</span>)</span><br><span class="line">  <span class="keyword">var</span> len = arr.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = arr[j+<span class="number">1</span>]</span><br><span class="line">        arr[j+<span class="number">1</span>] = arr[j]</span><br><span class="line">        arr[j] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'冒泡v1耗时：'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort1(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡<span class="selector-tag">v1</span>耗时：: 0<span class="selector-class">.608ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<p>优化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序v2</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="comment">// 冒泡排序v2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort2</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'冒泡v2耗时：'</span>)</span><br><span class="line">  <span class="keyword">var</span> len = arr.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> pos = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        pos = j</span><br><span class="line">        <span class="keyword">var</span> temp = arr[j]</span><br><span class="line">        arr[j] = arr[j+<span class="number">1</span>]</span><br><span class="line">        arr[j+<span class="number">1</span>] = temp</span><br><span class="line">      &#125;</span><br><span class="line">      len = pos</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'冒泡v2耗时：'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort2(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡<span class="selector-tag">v2</span>耗时：: 0<span class="selector-class">.159ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 54, 58, 56, 48, 12, 69, 87, 85, 94 ]</span></span><br></pre></td></tr></table></figure>
+<p>测试版</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序v3</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort3</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> low = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> high = arr.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">var</span> temp,j</span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'冒泡v3耗时：'</span>)</span><br><span class="line">  <span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = low; j &lt; high; ++j) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">        temp = arr[j]; arr[j] = arr[j+<span class="number">1</span>]; arr[j+<span class="number">1</span>] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    --high</span><br><span class="line">    <span class="keyword">for</span> (j = high; j &gt; low; --j) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j<span class="number">-1</span>]) &#123;</span><br><span class="line">        temp = arr[j]; arr[j] = arr[j<span class="number">-1</span>]; arr[j<span class="number">-1</span>] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ++low</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'冒泡v3耗时：'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubbleSort3(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">冒泡<span class="selector-tag">v3</span>耗时：: 0<span class="selector-class">.463ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = arr.length</span><br><span class="line">  <span class="keyword">var</span> minIndex, temp</span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'选择耗时：'</span>)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    minIndex = i</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[minIndex]) &#123;</span><br><span class="line">        minIndex = j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    temp = arr[i]</span><br><span class="line">    arr[i] = arr[minIndex]</span><br><span class="line">    arr[minIndex] = temp</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'选择耗时：'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(selectionSort(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">选择耗时：: 0<span class="selector-class">.551ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(array).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'插入耗时：'</span>)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> key = array[i]</span><br><span class="line">      <span class="keyword">var</span> j = i - <span class="number">1</span></span><br><span class="line">      <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; array[j] &gt; key) &#123;</span><br><span class="line">        array[j + <span class="number">1</span>] = array[j]</span><br><span class="line">        j--</span><br><span class="line">      &#125;</span><br><span class="line">      array[j + <span class="number">1</span>] = key</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'插入耗时：'</span>)</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'array is not an Array'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(insertionSort(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">插入耗时：: 0<span class="selector-class">.615ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<p>查找插入位置时使用二分查找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序v2 查找插入位置时使用二分查找</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort2</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(array).slice(<span class="number">8</span>, <span class="number">-1</span>) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'二分插入耗时：'</span>)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> key = array[i], left = <span class="number">0</span>, right = i - <span class="number">1</span></span><br><span class="line">      <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        <span class="keyword">var</span> middle = <span class="built_in">parseInt</span>((left + right) / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> (key &lt; array[middle]) &#123;</span><br><span class="line">          right = middle - <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          left = middle + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = i - <span class="number">1</span>; j &gt;= left; j--) &#123;</span><br><span class="line">        array[j + <span class="number">1</span>] = array[j]</span><br><span class="line">      &#125;</span><br><span class="line">      array[left] = key</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'二分插入耗时：'</span>)</span><br><span class="line">    <span class="keyword">return</span> array</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'array is not an Array'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(insertionSort2(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">二分插入耗时：: 0<span class="selector-class">.601ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 希尔排序 </span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = arr.length,</span><br><span class="line">      temp,</span><br><span class="line">      gap = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'希尔排序耗时:'</span>)</span><br><span class="line">  <span class="keyword">while</span> (gap &lt; len/<span class="number">5</span>) &#123;          <span class="comment">//动态定义间隔序列</span></span><br><span class="line">      gap =gap*<span class="number">5</span>+<span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (gap; gap &gt; <span class="number">0</span>; gap = <span class="built_in">Math</span>.floor(gap/<span class="number">5</span>)) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = gap; i &lt; len; i++) &#123;</span><br><span class="line">          temp = arr[i]</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> j = i-gap; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; temp; j-=gap) &#123;</span><br><span class="line">              arr[j+gap] = arr[j]</span><br><span class="line">          &#125;</span><br><span class="line">          arr[j+gap] = temp</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'希尔排序耗时:'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(shellSort(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">希尔排序耗时:: 0<span class="selector-class">.658ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/01/十大经典算法-优化篇/" data-id="cjtfuzq6b00020wuy1tgnm2dk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Scrapy框架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/">十大经典算法-优化篇</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/">Scrapy框架</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/19/python基础/">python基础</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/10/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵卫东<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/wdzhao.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/wdzhao.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/wdzhao.github.io/fancybox/jquery.fancybox.css">
+  <script src="/wdzhao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/wdzhao.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
