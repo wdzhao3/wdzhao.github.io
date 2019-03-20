@@ -16,7 +16,7 @@
 <meta property="og:description" content="算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/01/01/十大经典算法-优化篇/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/十大经典算法-优化篇/place.png">
-<meta property="og:updated_time" content="2019-03-19T14:12:29.339Z">
+<meta property="og:updated_time" content="2019-03-20T10:11:12.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十大经典算法-优化篇">
 <meta name="twitter:description" content="算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。">
@@ -95,6 +95,9 @@
       
         <p>算法，这可能是程序员值钱的地方了，一个算法的优劣可以用空间复杂度和时间复杂度来衡量。</p>
 <a id="more"></a>
+<p>参考博客：</p>
+<p>​    <a href="https://www.cnblogs.com/herozhi/p/5880939.html" target="_blank" rel="noopener">https://www.cnblogs.com/herozhi/p/5880939.html</a></p>
+<p>​    <a href="https://blog.csdn.net/qq_40803710/article/details/80642703" target="_blank" rel="noopener">https://blog.csdn.net/qq_40803710/article/details/80642703</a></p>
 <p>来看已经总结的算法：</p>
 <p><img src="/wdzhao.github.io//yoursite.com/2019/01/01/十大经典算法-优化篇/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\十大经典算法-优化篇\place.png" alt="place"></p>
 <p>(n：数据规模 k：“桶”的个数 In-place：占用常熟内存 Out-place：占用额外内存)</p>
@@ -116,11 +119,12 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">二分插入耗时：: 0<span class="selector-class">.601ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
 <h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 希尔排序 </span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">54</span>, <span class="number">58</span>, <span class="number">56</span>, <span class="number">48</span>, <span class="number">12</span>, <span class="number">69</span>, <span class="number">87</span>, <span class="number">85</span>, <span class="number">94</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = arr.length,</span><br><span class="line">      temp,</span><br><span class="line">      gap = <span class="number">1</span></span><br><span class="line">  <span class="built_in">console</span>.time(<span class="string">'希尔排序耗时:'</span>)</span><br><span class="line">  <span class="keyword">while</span> (gap &lt; len/<span class="number">5</span>) &#123;          <span class="comment">//动态定义间隔序列</span></span><br><span class="line">      gap =gap*<span class="number">5</span>+<span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (gap; gap &gt; <span class="number">0</span>; gap = <span class="built_in">Math</span>.floor(gap/<span class="number">5</span>)) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = gap; i &lt; len; i++) &#123;</span><br><span class="line">          temp = arr[i]</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> j = i-gap; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; temp; j-=gap) &#123;</span><br><span class="line">              arr[j+gap] = arr[j]</span><br><span class="line">          &#125;</span><br><span class="line">          arr[j+gap] = temp</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.timeEnd(<span class="string">'希尔排序耗时:'</span>)</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(shellSort(arr))</span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">希尔排序耗时:: 0<span class="selector-class">.658ms</span></span><br><span class="line"><span class="selector-attr">[ 2, 12, 48, 54, 56, 58, 69, 85, 87, 94 ]</span></span><br></pre></td></tr></table></figure>
+<p>待续。。。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/01/十大经典算法-优化篇/" data-id="cjtfuzq6b00020wuy1tgnm2dk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/01/十大经典算法-优化篇/" data-id="cjth1t1o9000458uyg3qssbd9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -128,6 +132,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/wdzhao.github.io/2019/01/12/Vue源码学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue源码学习
+        
+      </div>
+    </a>
   
   
     <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/" id="article-nav-older" class="article-nav-link-wrap">
@@ -167,6 +180,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/12/Vue源码学习/">Vue源码学习</a>
+          </li>
         
           <li>
             <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/">十大经典算法-优化篇</a>

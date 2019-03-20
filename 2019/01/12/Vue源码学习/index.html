@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Vue源码学习 | 飙车的蜗牛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="预计这会是一篇需要持续更新的博客了，暂时涉及到的大概有Vue函数、双向绑定、虚拟DOM、diff算法。">
+<meta name="keywords" content="前端工程师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码学习">
+<meta property="og:url" content="http://yoursite.com/2019/01/12/Vue源码学习/index.html">
+<meta property="og:site_name" content="飙车的蜗牛">
+<meta property="og:description" content="预计这会是一篇需要持续更新的博客了，暂时涉及到的大概有Vue函数、双向绑定、虚拟DOM、diff算法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T04:44:31.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue源码学习">
+<meta name="twitter:description" content="预计这会是一篇需要持续更新的博客了，暂时涉及到的大概有Vue函数、双向绑定、虚拟DOM、diff算法。">
+  
+    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="飙车的蜗牛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/wdzhao.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/wdzhao.github.io/" id="logo">飙车的蜗牛</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/wdzhao.github.io/" id="subtitle">这是一个没有人气的网站！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/wdzhao.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue源码学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/wdzhao.github.io/2019/01/12/Vue源码学习/" class="article-date">
+  <time datetime="2019-01-12T04:29:50.000Z" itemprop="datePublished">2019-01-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue源码学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>预计这会是一篇需要持续更新的博客了，暂时涉及到的大概有Vue函数、双向绑定、虚拟DOM、diff算法。</p>
+<a id="more"></a>
+<p>先来看下Vue源码的结构目录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">├── build <span class="comment">----------------------------- 构建相关的文件，一般情况下我们不需要动 </span></span><br><span class="line">├── dist <span class="comment">------------------------------ 构建后文件的输出目录 </span></span><br><span class="line">├── examples <span class="comment">-------------------------- 存放一些使用Vue开发的应用案例 </span></span><br><span class="line">├── flow <span class="comment">------------------------------ 类型声明，使用开源项目 [Flow](https://flowtype.org/) </span></span><br><span class="line">├── package.json <span class="comment">---------------------- 不解释 </span></span><br><span class="line">├── test <span class="comment">------------------------------ 包含所有测试文件 </span></span><br><span class="line">├── src <span class="comment">------------------------------- 这个是我们最应该关注的目录，包含了源码 </span></span><br><span class="line">│ ├── entries <span class="comment">------------------------- 包含了不同的构建或包的入口文件 </span></span><br><span class="line">│ │ ├── web-runtime.js <span class="comment">---------------- 运行时构建的入口，输出 dist/vue.common.js 文件，不包含模板(template)到render函数的编译器，所以不支持 `template` 选项，我们使用vue默认导出的就是这个运行时的版本。大家使用的时候要注意 </span></span><br><span class="line">│ │ ├── web-runtime-<span class="keyword">with</span>-compiler.js <span class="comment">-- 独立构建版本的入口，输出 dist/vue.js，它包含模板(template)到render函数的编译器 </span></span><br><span class="line">│ │ ├── web-compiler.js <span class="comment">--------------- vue-template-compiler 包的入口文件 </span></span><br><span class="line">│ │ ├── web-<span class="keyword">server</span>-renderer.js <span class="comment">-------- vue-server-renderer 包的入口文件 </span></span><br><span class="line">│ ├── compiler <span class="comment">------------------------ 编译器代码的存放目录，将 template 编译为 render 函数 </span></span><br><span class="line">│ │ ├── parser <span class="comment">------------------------ 存放将模板字符串转换成元素抽象语法树的代码 </span></span><br><span class="line">│ │ ├── codegen <span class="comment">----------------------- 存放从抽象语法树(AST)生成render函数的代码 </span></span><br><span class="line">│ │ ├── optimizer.js <span class="comment">------------------ 分析静态树，优化vdom渲染 </span></span><br><span class="line">│ ├── core <span class="comment">---------------------------- 存放通用的，平台无关的代码 </span></span><br><span class="line">│ │ ├── observer <span class="comment">---------------------- 反应系统，包含数据观测的核心代码 </span></span><br><span class="line">│ │ ├── vdom <span class="comment">-------------------------- 包含虚拟DOM创建(creation)和打补丁(patching)的代码 </span></span><br><span class="line">│ │ ├── <span class="keyword">instance</span> <span class="comment">---------------------- 包含Vue构造函数设计相关的代码 </span></span><br><span class="line">│ │ ├── <span class="keyword">global</span>-api <span class="comment">-------------------- 包含给Vue构造函数挂载全局方法(静态方法)或属性的代码 </span></span><br><span class="line">│ │ ├── components <span class="comment">-------------------- 包含抽象出来的通用组件 </span></span><br><span class="line">│ ├── <span class="keyword">server</span> <span class="comment">-------------------------- 包含服务端渲染(server-side rendering)的相关代码 </span></span><br><span class="line">│ ├── platforms <span class="comment">----------------------- 包含平台特有的相关代码 </span></span><br><span class="line">│ ├── sfc <span class="comment">----------------------------- 包含单文件组件(.vue文件)的解析逻辑，用于vue-template-compiler包 </span></span><br><span class="line">│ ├── <span class="keyword">shared</span> <span class="comment">-------------------------- 包含整个代码库通用的代码</span></span><br></pre></td></tr></table></figure>
+<h1 id="常用的NPM脚本"><a href="#常用的NPM脚本" class="headerlink" title="常用的NPM脚本"></a>常用的NPM脚本</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">＃表和自动重新构建DIST / vue.js</span><br><span class="line">$ npm <span class="builtin-name">run</span> dev</span><br><span class="line"></span><br><span class="line">＃在Chrome手表和自动重新运行单元测试</span><br><span class="line">$ npm <span class="builtin-name">run</span> dev：test</span><br><span class="line"></span><br><span class="line">＃建立所有DIST文件，包括NPM包</span><br><span class="line">$ npm <span class="builtin-name">run</span> build</span><br><span class="line"></span><br><span class="line">＃运行完整的测试套件，包括linting /<span class="built_in"> type </span>checking </span><br><span class="line">$ npm test</span><br></pre></td></tr></table></figure>
+<p>package.json文件中还有其他一些脚本可用。来看npm run dev做了些什么，</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dev<span class="string">": "</span>rollup -w -c scripts/<span class="built_in">config</span>.js <span class="comment">--environment TARGET:web-full-dev",</span></span><br></pre></td></tr></table></figure>
+<p>rollup时一个与webpack类似的js打包器，后续再来详细了解下。-w -c分别是指watch和指定配置文件build/config.js</p>
+<h1 id="一步步来实现Vue双向绑定"><a href="#一步步来实现Vue双向绑定" class="headerlink" title="一步步来实现Vue双向绑定"></a>一步步来实现Vue双向绑定</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/12/Vue源码学习/" data-id="cjth1t1nu000158uy9m3no1jt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">十大经典算法-优化篇</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/12/Vue源码学习/">Vue源码学习</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/">十大经典算法-优化篇</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/">Scrapy框架</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/19/python基础/">python基础</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/10/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵卫东<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/wdzhao.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/wdzhao.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/wdzhao.github.io/fancybox/jquery.fancybox.css">
+  <script src="/wdzhao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/wdzhao.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
