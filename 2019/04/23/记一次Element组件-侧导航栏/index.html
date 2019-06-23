@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>记一次Element组件-侧导航栏 | 飙车的蜗牛</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation 侧导航栏第一次刷新展开正常 折叠收起正常 再展开  展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。 具体异常原因日后再探。。。 先来看下如何解决，我们监测盗汗兰的offsetWidth的">
+<meta name="keywords" content="前端工程师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次Element组件-侧导航栏">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/index.html">
+<meta property="og:site_name" content="飙车的蜗牛">
+<meta property="og:description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation 侧导航栏第一次刷新展开正常 折叠收起正常 再展开  展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。 具体异常原因日后再探。。。 先来看下如何解决，我们监测盗汗兰的offsetWidth的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/记一次Element组件-侧导航栏/截图1.png">
+<meta property="og:updated_time" content="2019-06-23T09:10:26.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次Element组件-侧导航栏">
+<meta name="twitter:description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation 侧导航栏第一次刷新展开正常 折叠收起正常 再展开  展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。 具体异常原因日后再探。。。 先来看下如何解决，我们监测盗汗兰的offsetWidth的">
+<meta name="twitter:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/记一次Element组件-侧导航栏/截图1.png">
+  
+    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="飙车的蜗牛" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/wdzhao.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/wdzhao.github.io/" id="logo">飙车的蜗牛</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/wdzhao.github.io/" id="subtitle">这是一个没有人气的网站！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/wdzhao.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/wdzhao.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-记一次Element组件-侧导航栏" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/wdzhao.github.io/2019/04/23/记一次Element组件-侧导航栏/" class="article-date">
+  <time datetime="2019-04-23T08:51:33.000Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次Element组件-侧导航栏
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ElementUI官网</p>
+<p><a href="https://element.eleme.cn/#/zh-CN/component/installation" target="_blank" rel="noopener">https://element.eleme.cn/#/zh-CN/component/installation</a></p>
+<p>侧导航栏第一次刷新展开正常</p>
+<p>折叠收起正常</p>
+<p>再展开</p>
+<p><img src="/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\记一次Element组件-侧导航栏\截图1.png" alt="截图1"></p>
+<p>展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。</p>
+<p>具体异常原因日后再探。。。</p>
+<p>先来看下如何解决，我们监测盗汗兰的offsetWidth的值，在展开时修改为正常显示。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导航菜单--&gt;</span><br><span class="line">				&lt;el-menu :<span class="keyword">default</span>-active=<span class="string">"$route.path"</span> id=<span class="string">"menuClass"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-menu-vertical-demo"</span> @open=<span class="string">"handleopen"</span> @close=<span class="string">"handleclose"</span> @select=<span class="string">"handleselect"</span></span><br><span class="line">					 unique-opened router v-show=<span class="string">"!collapsed"</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//折叠导航栏</span></span><br><span class="line">		collapse:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.collapsed=!<span class="keyword">this</span>.collapsed</span><br><span class="line">			<span class="keyword">let</span> menuWidth = <span class="built_in">document</span>.getElementById(<span class="string">'menuClass'</span>)</span><br><span class="line">			<span class="keyword">if</span>(menuWidth.offsetWidth === <span class="number">0</span>)&#123;</span><br><span class="line">				menuWidth.style.width = <span class="string">"230px"</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/" data-id="cjx8qffiv000580uyzhertocw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/wdzhao.github.io/2019/01/13/Vue源码学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue源码学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/04/23/记一次Element组件-侧导航栏/">记一次Element组件-侧导航栏</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/13/Vue源码学习/">Vue源码学习</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/01/01/十大经典算法-优化篇/">十大经典算法-优化篇</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/">Scrapy框架</a>
+          </li>
+        
+          <li>
+            <a href="/wdzhao.github.io/2018/11/19/python基础/">python基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 赵卫东<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/wdzhao.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/wdzhao.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/wdzhao.github.io/fancybox/jquery.fancybox.css">
+  <script src="/wdzhao.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/wdzhao.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
