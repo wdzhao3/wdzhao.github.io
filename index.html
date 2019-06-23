@@ -94,20 +94,15 @@
       
         <p>ElementUI官网</p>
 <p><a href="https://element.eleme.cn/#/zh-CN/component/installation" target="_blank" rel="noopener">https://element.eleme.cn/#/zh-CN/component/installation</a></p>
-<p>侧导航栏第一次刷新展开正常</p>
-<p>折叠收起正常</p>
-<p>再展开</p>
-<p><img src="/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\记一次Element组件-侧导航栏\截图1.png" alt="截图1"></p>
-<p>展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。</p>
-<p>具体异常原因日后再探。。。</p>
-<p>先来看下如何解决，我们监测盗汗兰的offsetWidth的值，在展开时修改为正常显示。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导航菜单--&gt;</span><br><span class="line">				&lt;el-menu :<span class="keyword">default</span>-active=<span class="string">"$route.path"</span> id=<span class="string">"menuClass"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-menu-vertical-demo"</span> @open=<span class="string">"handleopen"</span> @close=<span class="string">"handleclose"</span> @select=<span class="string">"handleselect"</span></span><br><span class="line">					 unique-opened router v-show=<span class="string">"!collapsed"</span>&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//折叠导航栏</span></span><br><span class="line">		collapse:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.collapsed=!<span class="keyword">this</span>.collapsed</span><br><span class="line">			<span class="keyword">let</span> menuWidth = <span class="built_in">document</span>.getElementById(<span class="string">'menuClass'</span>)</span><br><span class="line">			<span class="keyword">if</span>(menuWidth.offsetWidth === <span class="number">0</span>)&#123;</span><br><span class="line">				menuWidth.style.width = <span class="string">"230px"</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br></pre></td></tr></table></figure>
-
+        
+          <p class="article-more-link">
+            <a href="/wdzhao.github.io/2019/04/23/记一次Element组件-侧导航栏/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/" data-id="cjx8qffiv000580uyzhertocw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/" data-id="cjx8qh4k600055guyio5qxx3j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/13/Vue源码学习/" data-id="cjx8qffj5000680uy1od6ly56" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/13/Vue源码学习/" data-id="cjx8qh4kg00065guylihd6poi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/01/十大经典算法-优化篇/" data-id="cjx8qffit000480uyjw3dt2mc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/01/十大经典算法-优化篇/" data-id="cjx8qh4k400045guyh05k2mqo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -231,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/21/Scrapy框架/" data-id="cjx8qffie000080uy2umvhmu4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/21/Scrapy框架/" data-id="cjx8qh4jm00005guyn4eg778v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/19/python基础/" data-id="cjx8qffip000280uy09y3hni0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/19/python基础/" data-id="cjx8qh4jv00015guysezzu64g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/10/hello-world/" data-id="cjx8qffim000180uyvhpbsafe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/10/hello-world/" data-id="cjx8qh4jy00025guybhfepm7s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/10/vueAPI/" data-id="cjx8qffir000380uyunuzha17" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/10/vueAPI/" data-id="cjx8qh4k200035guyfzrlm4ts" class="article-share-link">Share</a>
       
       
     </footer>
