@@ -5,24 +5,24 @@
   
 
   
-  <title>记一次Element组件-侧导航栏 | 飙车的蜗牛</title>
+  <title>记一次Element组件-侧导航栏 | 千伶百俐 戴月披星</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation">
 <meta name="keywords" content="前端工程师">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次Element组件-侧导航栏">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/index.html">
-<meta property="og:site_name" content="飙车的蜗牛">
+<meta property="og:site_name" content="千伶百俐 戴月披星">
 <meta property="og:description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/记一次Element组件-侧导航栏/截图1.png">
-<meta property="og:updated_time" content="2019-06-23T09:11:54.655Z">
+<meta property="og:updated_time" content="2019-06-24T09:00:05.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次Element组件-侧导航栏">
 <meta name="twitter:description" content="ElementUI官网 https://element.eleme.cn/#/zh-CN/component/installation">
 <meta name="twitter:image" content="http://yoursite.com/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users/wdzhao/github/wdzhao3.github.io/blog/source/_posts/记一次Element组件-侧导航栏/截图1.png">
   
-    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="飙车的蜗牛" type="application/atom+xml">
+    <link rel="alternate" href="/wdzhao.github.io/atom.xml" title="千伶百俐 戴月披星" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -41,11 +41,11 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/wdzhao.github.io/" id="logo">飙车的蜗牛</a>
+        <a href="/wdzhao.github.io/" id="logo">千伶百俐 戴月披星</a>
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/wdzhao.github.io/" id="subtitle">这是一个没有人气的网站！</a>
+          <a href="/wdzhao.github.io/" id="subtitle">做一个思想者！</a>
         </h2>
       
     </div>
@@ -102,14 +102,14 @@
 <p><img src="/wdzhao.github.io//yoursite.com/2019/04/23/记一次Element组件-侧导航栏/Users\wdzhao\github\wdzhao3.github.io\blog\source\_posts\记一次Element组件-侧导航栏\截图1.png" alt="截图1"></p>
 <p>展开异常，打开浏览器的调试工具，发现一级导航的div被留白部分挤压，文字正常被遮盖，而二级导航栏正常，只是被留白部分遮盖了。</p>
 <p>具体异常原因日后再探。。。</p>
-<p>先来看下如何解决，我们监测盗汗兰的offsetWidth的值，在展开时修改为正常显示。</p>
+<p>先来看下如何解决，我们监测导航栏的offsetWidth的值，在展开时修改为正常显示。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导航菜单--&gt;</span><br><span class="line">				&lt;el-menu :<span class="keyword">default</span>-active=<span class="string">"$route.path"</span> id=<span class="string">"menuClass"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"el-menu-vertical-demo"</span> @open=<span class="string">"handleopen"</span> @close=<span class="string">"handleclose"</span> @select=<span class="string">"handleselect"</span></span><br><span class="line">					 unique-opened router v-show=<span class="string">"!collapsed"</span>&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//折叠导航栏</span></span><br><span class="line">		collapse:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.collapsed=!<span class="keyword">this</span>.collapsed</span><br><span class="line">			<span class="keyword">let</span> menuWidth = <span class="built_in">document</span>.getElementById(<span class="string">'menuClass'</span>)</span><br><span class="line">			<span class="keyword">if</span>(menuWidth.offsetWidth === <span class="number">0</span>)&#123;</span><br><span class="line">				menuWidth.style.width = <span class="string">"230px"</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;,</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/" data-id="cjx8qh4k600055guyio5qxx3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/23/记一次Element组件-侧导航栏/" data-id="cjyv5vsgb00053cuygnmkamhc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -117,6 +117,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/wdzhao.github.io/2019/08/03/about/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          about
+        
+      </div>
+    </a>
   
   
     <a href="/wdzhao.github.io/2019/01/13/Vue源码学习/" id="article-nav-older" class="article-nav-link-wrap">
@@ -145,7 +154,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/wdzhao.github.io/archives/2018/10/">十月 2018</a></li></ul>
     </div>
   </div>
 
@@ -156,6 +165,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/wdzhao.github.io/2019/08/03/about/">about</a>
+          </li>
         
           <li>
             <a href="/wdzhao.github.io/2019/04/23/记一次Element组件-侧导航栏/">记一次Element组件-侧导航栏</a>
@@ -171,10 +184,6 @@
         
           <li>
             <a href="/wdzhao.github.io/2018/11/21/Scrapy框架/">Scrapy框架</a>
-          </li>
-        
-          <li>
-            <a href="/wdzhao.github.io/2018/11/19/python基础/">python基础</a>
           </li>
         
       </ul>
