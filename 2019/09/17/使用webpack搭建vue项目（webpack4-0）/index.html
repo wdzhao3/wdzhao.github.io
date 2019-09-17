@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用webpack搭建vue项目（webpack4.0） | 不及故是从容</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。 http://nodejs.cn/ NPM是js包的管理工具 https://www.npmjs.cn/ yarn比NPM高效、可靠。 https://yarn.bootcss.com/ npx使用本地已安装的可执行工具，而不需要配置 scripts http://www.ruanyifeng.com/blog/">
+  <meta name="description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。">
 <meta name="keywords" content="前端工程师">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用webpack搭建vue项目（webpack4.0）">
 <meta property="og:url" content="http://yoursite.com/2019/09/17/使用webpack搭建vue项目（webpack4-0）/index.html">
 <meta property="og:site_name" content="不及故是从容">
-<meta property="og:description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。 http://nodejs.cn/ NPM是js包的管理工具 https://www.npmjs.cn/ yarn比NPM高效、可靠。 https://yarn.bootcss.com/ npx使用本地已安装的可执行工具，而不需要配置 scripts http://www.ruanyifeng.com/blog/">
+<meta property="og:description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-17T12:50:49.452Z">
+<meta property="og:updated_time" content="2019-09-17T12:58:08.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用webpack搭建vue项目（webpack4.0）">
-<meta name="twitter:description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。 http://nodejs.cn/ NPM是js包的管理工具 https://www.npmjs.cn/ yarn比NPM高效、可靠。 https://yarn.bootcss.com/ npx使用本地已安装的可执行工具，而不需要配置 scripts http://www.ruanyifeng.com/blog/">
+<meta name="twitter:description" content="Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。">
   
     <link rel="alternative" href="/atom.xml" title="不及故是从容" type="application/atom+xml">
   
@@ -180,6 +180,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。</p>
+<a id="more"></a>
 <p><a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a></p>
 <p>NPM是js包的管理工具</p>
 <p><a href="https://www.npmjs.cn/" target="_blank" rel="noopener">https://www.npmjs.cn/</a></p>
@@ -201,8 +202,8 @@
 <p>创建html模板，并引入index.js：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">component</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  element.innerHTML = _.join([<span class="string">'Hello'</span>, <span class="string">'webpack'</span>], <span class="string">' '</span>);</span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(component());</span><br></pre></td></tr></table></figure>
 <p>安装npm install –save lodash</p>
-<p>index.js<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+   <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">-   <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br></pre></td></tr></table></figure></p>
-<p>index.html<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./src/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+   <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">-   <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br></pre></td></tr></table></figure></p>
+<p>index.html<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-    <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./src/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">+    <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
 <p>将index.html移到dist,dist是打包发布的文件夹，不在显式的引入index，防止代码意外发布，<br>通过声明的lodash依赖，webpack能够去构建依赖图，然后使用图生成一个优化过的、能够正确<br>执行的bundle。</p>
 <p>执行npx webpack，会在dist文件夹生成main.js</p>
 <p>创建webpack.config.js,安装 html-webpack-plugin </p>
