@@ -160,6 +160,125 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-使用webpack搭建vue项目（webpack4-0）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/wdzhao.github.io/2019/09/17/使用webpack搭建vue项目（webpack4-0）/">使用webpack搭建vue项目（webpack4.0）</a>
+    </h1>
+  
+
+        
+        <a href="/wdzhao.github.io/2019/09/17/使用webpack搭建vue项目（webpack4-0）/" class="archive-article-date">
+  	<time datetime="2019-09-17T02:07:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Node.js是一个基于Chrome V8 引擎的 JavaScript 运行环境。</p>
+<p><a href="http://nodejs.cn/" target="_blank" rel="noopener">http://nodejs.cn/</a></p>
+<p>NPM是js包的管理工具</p>
+<p><a href="https://www.npmjs.cn/" target="_blank" rel="noopener">https://www.npmjs.cn/</a></p>
+<p>yarn比NPM高效、可靠。</p>
+<p><a href="https://yarn.bootcss.com/" target="_blank" rel="noopener">https://yarn.bootcss.com/</a></p>
+<p>npx使用本地已安装的可执行工具，而不需要配置 scripts</p>
+<p><a href="http://www.ruanyifeng.com/blog/2019/02/npx.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/02/npx.html</a></p>
+<p>webpack打包工具（css样式、资源、图片、js脚本等打包合成一个或多个文件，主要用于模块化、预编译模块）</p>
+<p><a href="https://www.webpackjs.com/" target="_blank" rel="noopener">https://www.webpackjs.com/</a></p>
+<p>gulp构建工具（js压缩、css压缩、预编译）</p>
+<p><a href="https://www.gulpjs.com.cn/" target="_blank" rel="noopener">https://www.gulpjs.com.cn/</a></p>
+<p>#创建vue项目结构，并简单打包</p>
+<p>webpack配置包含入口、出口、loader、插件、模式。入口：webpack从哪里开始寻找依赖并且编译；出口：配置编译后文件储存的位置和名称。</p>
+<p>新建项目，npm init -y初始化项目，</p>
+<p>安装webpack、webpack-cli、webpack-dev-server vue-hot-reload-api</p>
+<p>vue vue-loader vue-router vuex css-loader</p>
+<p>sass-loader node-sass vue-style-loader</p>
+<p>新建index.html、src/index.js、src</p>
+<p>创建html模板，并引入index.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">component</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  element.innerHTML = _.join([<span class="string">'Hello'</span>, <span class="string">'webpack'</span>], <span class="string">' '</span>);</span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(component());</span><br></pre></td></tr></table></figure>
+<p>安装npm install –save lodash</p>
+<p>index.js<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+   <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">-   <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br></pre></td></tr></table></figure></p>
+<p>index.html<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./src/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>将index.html移到dist,dist是打包发布的文件夹，不在显式的引入index，防止代码意外发布，<br>通过声明的lodash依赖，webpack能够去构建依赖图，然后使用图生成一个优化过的、能够正确<br>执行的bundle。</p>
+<p>执行npx webpack，会在dist文件夹生成main.js</p>
+<p>创建webpack.config.js,安装 html-webpack-plugin </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>) <span class="comment">// 用于路径</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>) <span class="comment">// html解析</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">''</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// new HtmlWebpackPlugin(&#123;template: './src/index.html'&#125;)</span></span><br><span class="line">  ],</span><br><span class="line">  mode: <span class="string">'production'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>package.json<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"</span><span class="keyword">Error</span>: <span class="keyword">no</span> <span class="keyword">test</span> specified\<span class="string">" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"start"</span>: <span class="string">"webpack --save-dev webpack-cli"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></p>
+<p>#资源管理配置</p>
+<p>1.css，安装 style-loader、css-loader</p>
+<p>src中新建资源文件夹、css文件夹、css文件，并在index.js中引入，节点上添加class，重新npm run build</p>
+<p>2.图片，安装 file-loader、url-loader，引入并使用</p>
+<p>3.字体，引入并使用</p>
+<p>此时的webpack.config.js中应该是这样的：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>) <span class="comment">// 用于路径</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>) <span class="comment">// html解析</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)  </span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'main.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span>,</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(gif|jpg|jpeg|png|svg)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">'url-loader'</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              limit: <span class="number">1024</span>,</span><br><span class="line">              name: <span class="string">'[name].[ext]'</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(woff|woff2|eot|ttf|otf)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'file-loader'</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// new HtmlWebpackPlugin(&#123;template: './src/index.html'&#125;)</span></span><br><span class="line">  ],</span><br><span class="line">  mode: <span class="string">'production'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>新建print.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is print.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在index.js中引入并调用，添加按钮事件,npm run build一下</p>
+<p>安装html-webpack-plugin插件，并修改index.html</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Output Management<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./print.bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./app.bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>webpack.config.js改动<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">+ const HtmlWebpackPlugin = require(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="symbol">	entry:</span> &#123;</span><br><span class="line">+     <span class="string">app:</span> <span class="string">'./src/index.js'</span>,</span><br><span class="line">+     <span class="string">print:</span> <span class="string">'./src/print.js'</span></span><br><span class="line">+   &#125;,</span><br><span class="line"><span class="symbol">    output:</span> &#123;</span><br><span class="line">+     <span class="string">filename:</span> <span class="string">'[name].bundle.js'</span>,</span><br><span class="line"><span class="symbol">      path:</span> path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">+   <span class="string">plugins:</span> [</span><br><span class="line">+     <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">+       <span class="string">title:</span> <span class="string">'Output Management'</span></span><br><span class="line">+     &#125;)</span><br><span class="line">+   ],</span><br></pre></td></tr></table></figure></p>
+<p>每次生成的dist下的文件都不会清除，我们可以添加一个每次构建前都清理的插件clean-webpack-plugin</p>
+<p>webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ 	<span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line">+   plugins: [</span><br><span class="line">+     <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</span><br><span class="line">+   ],</span><br></pre></td></tr></table></figure></p>
+<p>#代码分离</p>
+<p>上面我们已经改动了动态入口起点，代码分离是webpack的特性之一。把代码分离到不同bundle中，然后可以按需加载，并行加载，懒加载。获得更小的bundle，控制资源加载的优先级，合理使用会极大影响加载时间。</p>
+<p>常用的分离方法有三种：</p>
+<pre><code>入口起点，使用 entry 配置手动地分离代码。
+
+防止重复，使用 CommonsChunkPlugin 去重和分离 chunk
+
+动态导入，通过模块的内联函数调用来分离代码
+</code></pre><p>后面一部分必要的依赖 </p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-loader vue-template-compiler <span class="keyword">script-loader </span>vue-hot-reload-api <span class="keyword">babel </span><span class="keyword">babel-loader </span><span class="keyword">babel-core </span><span class="keyword">babel-plugin-transform-runtime </span><span class="keyword">babel-runtime </span><span class="keyword">extract-text-webpack-plugi </span><span class="keyword">babel-preset-es2015 </span>sass-loader node-sass css-loader vue-style-loader -D</span><br></pre></td></tr></table></figure>
+<p>package.json</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"</span><span class="keyword">Error</span>: <span class="keyword">no</span> <span class="keyword">test</span> specified\<span class="string">" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"webpack-dev-server --host 192.168.1.198 --port 8888 --open --config webpack.config.js"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>npm run dev</p>
+<p>代码分割<br>配置插件<br>中间件，如热更新</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/wdzhao.github.io/2019/09/17/使用webpack搭建vue项目（webpack4-0）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-记一次Element组件-侧导航栏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
