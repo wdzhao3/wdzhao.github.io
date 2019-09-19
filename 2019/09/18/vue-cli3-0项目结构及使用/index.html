@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/wdzhao.github.io/2019/09/18/vue-cli3-0项目结构及使用/003.png">
 <meta property="og:image" content="http://yoursite.com/wdzhao.github.io/2019/09/18/vue-cli3-0项目结构及使用/002.png">
 <meta property="og:image" content="http://yoursite.com/wdzhao.github.io/2019/09/18/vue-cli3-0项目结构及使用/001.png">
-<meta property="og:updated_time" content="2019-09-19T04:06:58.614Z">
+<meta property="og:updated_time" content="2019-09-19T12:55:03.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue-cli3.0项目结构及使用">
 <meta name="twitter:description" content="vue-cli是基于vue.js进行快速、完整开发的手脚架，确保基于默认配置快速开发应用，而不必花费大量的时间去纠结配置，也提供调整配置的灵活性。">
@@ -216,7 +216,47 @@
 <p>创建项目成功会出现以上提示</p>
 <img src="/wdzhao.github.io/2019/09/18/vue-cli3-0项目结构及使用/001.png">
 <p>上面是手动配置，不熟悉的可以百度谷歌搜一下</p>
-<p>添加插件</p>
+<p>试运行</p>
+<blockquote>
+<p>cd hello-world</p>
+</blockquote>
+<blockquote>
+<p>npm run serve</p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>yarn serve</p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>npx vue-cli-service serve</p>
+</blockquote>
+<p>我们还可以指定相关的选项，如</p>
+<blockquote>
+<p>npx vue-cli-service serve –port 8888</p>
+</blockquote>
+<p>打包</p>
+<blockquote>
+<p>npm run build</p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>yarn serve</p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>npx vue-cli-service build</p>
+</blockquote>
+<p>也可以指定相关选项，如</p>
+<blockquote>
+<p>npx vue-cli-service –report // 生成report.html分析包的内容</p>
+</blockquote>
+<p>审查vue cli项目的webpack.config</p>
+<blockquote>
+<p>npx vue-cli-service inspect</p>
+</blockquote>
+<pre><code>缓存；npm有时候并不可靠，如果在编译的过程中出现问题，可以尝试删掉缓存目录node_module/.cache
+</code></pre><p>添加插件</p>
 <blockquote>
 <p>vue add router</p>
 </blockquote>
@@ -224,7 +264,59 @@
 <blockquote>
 <p>vue ui</p>
 </blockquote>
-
+<p>通过手脚架创建的项目无需额外配置就可以跑起来了，但是满足每一个需求是不太可能的，一个项目的需求也会改变。</p>
+<h2 id="构建一个多页应用"><a href="#构建一个多页应用" class="headerlink" title="构建一个多页应用"></a>构建一个多页应用</h2><p>不是每一个应用都需要单页应用，Vue Cli支持使用vue.config.js中的page来构建一个多页应用。构建好的应用将会在不同的入口之间高效共享通用的 chunk 以获得最佳的加载性能。</p>
+<h2 id="静态资源的处理"><a href="#静态资源的处理" class="headerlink" title="静态资源的处理"></a>静态资源的处理</h2><p>在 JavaScript 被导入或在 template/CSS 中通过相对路径被引用。这类引用会被 webpack 处理。简单点就是src下的文件使用相对路径，或引用都会被webpack处理。</p>
+<p>而根目录下的public下静态资源，使用绝对路径的情况下不会被处理。</p>
+<p>具体到代码，我们在编程的时候src下的文件都会以相对路径的方式引入，JS、CSS、.vue文件基本都以@import、’./‘，图片以src=”…”、url(‘…’)等方式使用，打包他们都会被解析为一个模块依赖。</p>
+<p>通过file-loader加哈希值来决定文件路径和名称，url-loader将小于4kb的资源内联。上一章我们通过控制内联文件大小。</p>
+<h2 id="CSS预处理的配置"><a href="#CSS预处理的配置" class="headerlink" title="CSS预处理的配置"></a>CSS预处理的配置</h2><p><a href="https://cli.vuejs.org/zh/guide/css.html#%E5%90%91%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-loader-%E4%BC%A0%E9%80%92%E9%80%89%E9%A1%B9" target="_blank" rel="noopener">https://cli.vuejs.org/zh/guide/css.html#%E5%90%91%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-loader-%E4%BC%A0%E9%80%92%E9%80%89%E9%A1%B9</a></p>
+<h2 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h2><p>多数时候，我们会在根目录新增一个build文件夹，来放置vue.config、webpack.config。</p>
+<p>从vue-cli 2.x到vue-cli 3.0或使用webpack，会突然发现初始化的项目根本没有配置文件，因为vue-cli 3.0帮助开发者解决了80%的配置问题。可以打开node-modules/@vue/cli-service/lib/config</p>
+<p>根目录下新建一个vue-config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vue.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// vue-cli 3.3已弃用 baseUrl,</span></span><br><span class="line">  publicPath:</span><br><span class="line">    process.env.NODE_ENV === <span class="string">"production"</span> ? <span class="string">"/production-sub-path/"</span> : <span class="string">"/"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// build时构建文件的目录,构建时传入 --no-clean 可关闭该行为</span></span><br><span class="line">  outputDir: <span class="string">"dist"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// build时放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录</span></span><br><span class="line">  assetsDir: <span class="string">""</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。</span></span><br><span class="line">  indexPath: <span class="string">"index.html"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 哈希路由，默认开启，可以更好控制缓存</span></span><br><span class="line">  filenameHashing: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 构建多页面应用，页面的配置</span></span><br><span class="line">  <span class="comment">// pages: &#123;&#125;,</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建</span></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 与下方的overlay相关，开发环境下开启，生产环境下禁用，以下配置</span></span><br><span class="line">  lintOnSave: process.env.NODE_ENV !== <span class="string">"production"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 所有 webpack-dev-server 的选项都支持</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    <span class="comment">// 端口号</span></span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    host: <span class="string">"localhost"</span>,</span><br><span class="line">    https: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 自启动</span></span><br><span class="line">    open: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// proxy: 'http://localhost:4000'配置代理</span></span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">"/api"</span>: &#123;</span><br><span class="line">        target: <span class="string">"http://localhost:4000"</span>,</span><br><span class="line">        ws: <span class="literal">true</span>,</span><br><span class="line">        changeOrigin: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 将 lint 错误输出为编译警告。默认情况下，警告仅仅会被输出到命令行，且不会使得编译失败。</span></span><br><span class="line">    <span class="comment">// 也可以通过设置让浏览器 overlay 同时显示警告和错误</span></span><br><span class="line">    overlay: &#123;</span><br><span class="line">      warnings: <span class="literal">true</span>,</span><br><span class="line">      errors: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// css的处理</span></span><br><span class="line">  css: &#123;</span><br><span class="line">    <span class="comment">// 当为true时，css文件名可省略 module 默认为 false</span></span><br><span class="line">    modules: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 是否将组件中的 CSS 提取至一个独立的 CSS 文件中,当作为一个库构建时，你也可以将其设置为 false 免得用户自己导入 CSS</span></span><br><span class="line">    <span class="comment">// 默认生产环境下是 true，开发环境下是 false</span></span><br><span class="line">    extract: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 是否为 CSS 开启 source map。设置为 true 之后可能会影响构建的性能</span></span><br><span class="line">    sourceMap: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">//向 CSS 相关的 loader 传递选项(支持 css-loader postcss-loader sass-loader less-loader stylus-loader)</span></span><br><span class="line">    loaderOptions: &#123;</span><br><span class="line">      css: &#123;&#125;,</span><br><span class="line">      scss: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可以用来传递任何第三方插件选项</span></span><br><span class="line">  pluginOptions: &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>执行以下命令，会将当前环境下的配置打印出来</p>
+<blockquote>
+<p>vue inspect &gt; output.js<br>基本配置可能不会满足所有需求，还是要注重webpack的基础，特别是打包的时候。</p>
+</blockquote>
+<h2 id="环境变量和模式"><a href="#环境变量和模式" class="headerlink" title="环境变量和模式"></a>环境变量和模式</h2><p>本地开发、测试脚本、开发自测、测试环境、预上线环境、正式环境，一般会有其中的几个。</p>
+<p>默认情况下，vue-cli有三种模式，</p>
+<pre><code>development：在vue-cli-service serve下，即开发环境使用
+production：在vue-cli-service build 和vue-cli-service test:e2e下，即正式环境使用
+test： 在vue-cli-service test:unit下使用
+</code></pre><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h2 id="开发一个插件"><a href="#开发一个插件" class="headerlink" title="开发一个插件"></a>开发一个插件</h2><p>生成一个npm包，构建一个优秀的插件便于使用。</p>
+<p>在项目目录下创建一个插件文件夹，命名要以vue-cli-plugin-xxx命名</p>
+<p>基本的目录是这样的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── README.md</span><br><span class="line">├── generator.js  # generator (可选)</span><br><span class="line">├── prompts.js    # prompt 文件 (可选)</span><br><span class="line">├── index.js      # service 插件</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure></p>
+<p>目录根据需要，主要是index.js和package.json(请生成)</p>
+<p>service 插件会在实例被创建时自动加载，接收两个参数，一个PluginAPI实例；一个包含本地vue.config.js中一个选项的对象（可以修改和扩展vue.config配置）或者package.json中的vue字段(修改和补充package.json)</p>
+<p>所以index.js里大概是这样的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.export = <span class="function">(<span class="params">api, projectOptions</span>) =&gt;</span> &#123;</span><br><span class="line">  api.chainWebpack(<span class="function"><span class="params">webpackConfig</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 通过 webpack-chain 修改 webpack 配置</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  api.configureWebpack(<span class="function"><span class="params">webpackConfig</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 修改 webpack 配置</span></span><br><span class="line">    <span class="comment">// 或返回通过 webpack-merge 合并的配置对象</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  api.registerCommand(<span class="string">"test"</span>, args =&gt; &#123;</span><br><span class="line">    <span class="comment">// 注册 `vue-cli-service test`</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 api.resolveWebpackConfig() 拿到webpack配置，可以在需要的时候进行修改。</span></span><br><span class="line">    <span class="keyword">const</span> configA = api.resolveWebpackConfig();</span><br><span class="line">    <span class="keyword">const</span> configB = api.resolveWebpackConfig();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  pluginOptions: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请确保为正确的环境变量指定默认模式</span></span><br><span class="line"><span class="built_in">module</span>.exports.defaultModes = &#123;</span><br><span class="line">  <span class="string">"my-build"</span>: <span class="string">"production"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>generator (可选)，会在两种情况下调用：</p>
+<pre><code>1.项目的初始化创建过程中,作为项目创建 preset 的一部分被安装(我们基本用不到)；
+2.插件在项目创建好之后通过 vue invoke 独立调用时被安装，可以向package.json注入额外字段，并在项目中添加文件
+</code></pre><p>generator接收三个参数：</p>
+<pre><code>一个 GeneratorAPI 实例；
+一个用于配置中当前插件plugins配置项传入的option（自对话）;
+一个整个preset。
+</code></pre><p>generator.js或generator/index.js中大概是这样的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">api, options, rootOptions</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 修改 `package.json` 里的字段</span></span><br><span class="line">  api.extendPackage(&#123;</span><br><span class="line">    scripts: &#123;</span><br><span class="line">      test: <span class="string">"vue-cli-service test"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    dependencies: &#123;</span><br><span class="line">      rxjs: <span class="string">"^6.3.3"</span>,</span><br><span class="line">      <span class="string">"vue-rx"</span>: <span class="string">"^6.1.0"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 复制并用 ejs 渲染 `./template` 内所有的文件</span></span><br><span class="line">  <span class="comment">// api.render("./template");</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options.foo) &#123;</span><br><span class="line">    <span class="comment">// 有条件地生成文件</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>prompt 文件 (可选)，内建插件的对话，只有内建插件可以定制创建新项目时的初始化对话（）</p>
+<p>本地测试插件</p>
+<p>以下命令安装这个插件</p>
+<blockquote>
+<p>npm i -D file://MyPersonalAccountData/Win10Dasktop/demo/node/vue-cli-test/test6/vue-cli-plugin-test6</p>
+</blockquote>
+<blockquote>
+<p>vue invoke vue-cli-plugin-test6</p>
+</blockquote>
+<p>接着在main.js中引入并注册：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> test6 <span class="keyword">from</span> <span class="string">"vue-cli-plugin-test6"</span>;</span><br><span class="line">Vue.use(test6);</span><br></pre></td></tr></table></figure></p>
+<p>UI插件</p>
+<h2 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue-Router"></a>Vue-Router</h2><p>Vue Router 是 Vue.js 官方的路由管理器。与Vue.js 的核心代码深度集成。可以方便构建单页应用。</p>
+<pre><code>嵌套的路由/视图表
+模块化的、基于组件的路由配置
+路由参数、查询、通配符
+视图过渡效果
+导航控制
+HTML5 历史模式或 hash 模式
+自定义的滚动条行为
+</code></pre>
       
 
       
